@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core';
 import firebase from '../firebase'
+import CoinFlip from '../components/CoinFlip/CoinFlip'
 class Home extends Component {
   constructor(props) {
       super(props);
@@ -34,36 +35,42 @@ class Home extends Component {
     return (
             <div>
                 {!this.state.loading &&
-                <Grid item>
-                <Paper>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Wins</TableCell>
-                                <TableCell>Losses</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {this.state.playerData.sort(this.sortByWinPercentage).map((row,index) => {
-                                return (
-                                    <TableRow key={index}>
-                                        <TableCell>
-                                            {row.firstName} {row.lastName}
-                                        </TableCell>
-                                        <TableCell>
-                                            {row.wins}
-                                        </TableCell>
-                                        <TableCell>
-                                            {row.losses}
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </Grid>}
+                <div>
+                    <Grid item>
+                        <CoinFlip/>
+                    </Grid>
+                    <Grid item>
+                       <Paper>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Wins</TableCell>
+                                    <TableCell>Losses</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.state.playerData.sort(this.sortByWinPercentage).map((row,index) => {
+                                    return (
+                                        <TableRow key={index}>
+                                            <TableCell>
+                                                {row.firstName} {row.lastName}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.wins}
+                                            </TableCell>
+                                            <TableCell>
+                                                {row.losses}
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                        </Paper>
+                    </Grid>
+                </div>
+                }
             </div>
     );
   }
