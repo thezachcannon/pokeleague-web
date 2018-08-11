@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 import './App.css';
 import { AppBar, Toolbar, Typography, Grid } from '@material-ui/core';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 import Home from './views/Home'
+import LoginView from './views/LoginView'
+
 
 const theme = createMuiTheme({
   palette: {
@@ -32,15 +34,12 @@ class App extends Component {
         <AppBar color="primary">
           <Toolbar>
             <Typography variant="title" color="inherit">
-              PokeLeauge
+              <Link to='/login' style={{'color': 'white', 'textDecoration': 'none'}}>PokeLeague</Link>
             </Typography>
           </Toolbar>
         </AppBar>
-        <div  style={{"height": "100vh", "display": "flex"}}>
-        <Grid container alignContent="center" justify="center" alignItems="center">
         <Route path="/" exact component={Home} />
-        </Grid>
-        </div>        
+        <Route path="/login" exact component={LoginView} />
       </div>
       </MuiThemeProvider>
       </Router>

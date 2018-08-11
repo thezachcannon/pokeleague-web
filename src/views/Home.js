@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core';
-import firebase from '../firebase'
-import CoinFlip from '../components/CoinFlip/CoinFlip'
+import {db} from '../firebase/firebase'
 class Home extends Component {
   constructor(props) {
       super(props);
@@ -18,7 +17,7 @@ class Home extends Component {
   readPlayerData () {
       let vm = this;
       this.setState({loading: true})
-      firebase.database().ref('players/').on('value', function (snapshot) {
+      db.ref('players/').on('value', function (snapshot) {
         vm.setState({playerData: snapshot.val(), loading: false})
           
       })
@@ -35,10 +34,9 @@ class Home extends Component {
     return (
             <div>
                 {!this.state.loading &&
-                <div>
-                    <Grid item>
-                        <CoinFlip/>
-                    </Grid>
+                <div style={{"height": "100vh", "display": "flex"}}>
+                    
+        <Grid container alignContent="center" justify="center" alignItems="center">
                     <Grid item>
                        <Paper>
                         <Table>
@@ -68,6 +66,7 @@ class Home extends Component {
                             </TableBody>
                         </Table>
                         </Paper>
+                    </Grid>
                     </Grid>
                 </div>
                 }

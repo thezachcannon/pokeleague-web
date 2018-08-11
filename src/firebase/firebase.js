@@ -8,6 +8,12 @@ const config = {
     storageBucket: "pokeleague-23c17.appspot.com",
     messagingSenderId: "699044689812"
   };
-  firebase.database 
+
+  
   firebase.initializeApp(config);
-  export default firebase;
+  var auth = firebase.auth()
+  var db = firebase.database()
+  export {
+    db,
+    auth
+  };
