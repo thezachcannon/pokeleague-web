@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Paper, Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core';
 import {db} from '../firebase/firebase'
+import {withRouter} from 'react-router-dom'
 class Home extends Component {
   constructor(props) {
       super(props);
@@ -75,4 +76,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

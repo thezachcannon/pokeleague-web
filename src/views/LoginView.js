@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Grid, Paper, FormControl, FormGroup, Input, TextField, Button } from '@material-ui/core';
+import { Grid, FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import {auth} from '../firebase/firebase'
 import {withRouter} from 'react-router-dom'
 
@@ -21,10 +21,8 @@ class LoginView extends Component {
     submitLogin () {
         let vm = this;
         vm.setState(updateByPropertyName('error', ''))
-     auth.signInWithEmailAndPassword(vm.state.username, vm.state.password).then(function (response){
-        vm.props.history.push('/')
-     }).catch(function (error){
-         console.log(error)
+     auth.signInWithEmailAndPassword(vm.state.username, vm.state.password).then(function (){
+    }).catch(function (error){
          vm.setState(updateByPropertyName('error', error))
      })
      
