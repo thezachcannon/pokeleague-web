@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {Route, Switch, withRouter} from 'react-router-dom'
 
 import Home from './views/Home'
 import LoginView from './views/LoginView'
@@ -33,29 +33,27 @@ const theme = createMuiTheme({
 const INITIAL_STATE = {
   currentUser: null,
   isLoggedIn: false,
-  loginRoute: '/login'
 }
 class App extends Component {
   constructor(props){
     super()
     this.state = INITIAL_STATE;
-  }
+      }
   
   logoutClick = () =>{
       auth.signOut()
   }
 
   loginClick = () => {
-    // window.history.push('/login')
+    this.props.history.push('/login')
   }
 
-  titleClick = (props, context) => {
-    // history.push('/')
+  titleClick = (props) => {
+    this.props.history.push('/')
   }
 
   render() {
     return (
-      <BrowserRouter>
       <MuiThemeProvider theme={theme}>
           <div className="App">
           <AuthUserContext>
@@ -75,10 +73,9 @@ class App extends Component {
              
           </AuthUserContext>
           </div>
-          </MuiThemeProvider> 
-      </BrowserRouter>
+          </MuiThemeProvider>
     );
   }
 }
 
-export default withAuthentication(App);
+export default withAuthentication(withRouter(App));

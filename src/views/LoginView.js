@@ -22,6 +22,7 @@ class LoginView extends Component {
         let vm = this;
         vm.setState(updateByPropertyName('error', ''))
      auth.signInWithEmailAndPassword(vm.state.username, vm.state.password).then(function (){
+         vm.props.history.push('/')
     }).catch(function (error){
          vm.setState(updateByPropertyName('error', error))
      })
