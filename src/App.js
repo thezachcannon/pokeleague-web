@@ -6,6 +6,7 @@ import {Route, Switch, withRouter} from 'react-router-dom'
 import Home from './views/Home'
 import LoginView from './views/LoginView'
 import AdminView from './views/Admin'
+import EditUserView from './views/EditUserView'
 import { auth } from './firebase/firebase';
 
 import AuthUserContext from './components/Session/AuthUserContext';
@@ -44,6 +45,9 @@ class App extends Component {
       auth.signOut()
   }
 
+  adminClick = () => {
+    this.props.history.push('/admin')
+  }
   loginClick = () => {
     this.props.history.push('/login')
   }
@@ -58,13 +62,17 @@ class App extends Component {
           <div className="App">
           <AuthUserContext>
             { authUser => { return <div>
-            <MenuAppBar authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
+            <MenuAppBar adminClick={this.adminClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
             <Switch>
               <Route path="/" exact component={Home} />
               { !authUser &&  <div><Route path="/login" authUser exact component={LoginView} />
                              </div>
               }
-             { authUser && <div><Route path='/admin' exact component={AdminView} /> </div>}
+             { authUser && 
+              <div>
+                <Route path='/admin' exact component={AdminView} />
+                <Route path='/admin/editUser/:userId' component={EditUserView} />
+              </div>}
              </Switch>
               </div>
             }}

@@ -37,6 +37,8 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  handleAdmin = () => this.props.adminClick();
+
   handleLogout = () => this.props.logoutClick();
 
   render() {
@@ -78,9 +80,7 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleAdmin}>Admin</MenuItem>               
                   <MenuItem onClick={this.handleLogout}>Logout</MenuItem>                  
                 </Menu>
               </div>
