@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Paper, Table, TableHead, TableRow, TableCell, TableBody} from '@material-ui/core'
+import {Grid, Paper, Table, TableHead, TableRow, TableCell, TableBody, } from '@material-ui/core'
 import {withRouter} from 'react-router-dom'
 import withAuthentication from '../../components/Session/withAuthentication';
 import {db} from '../../firebase/firebase'
@@ -26,7 +26,6 @@ class AdminView extends Component {
         this.setState({loading: true})
         db.ref('players/').on('value', function (snapshot) {
           vm.setState({playerAccounts: snapshot.val(), loading: false})
-            
         })
     }
     render(){
@@ -42,8 +41,10 @@ class AdminView extends Component {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
-                                <TableCell>Wins</TableCell>
-                                <TableCell>Losses</TableCell>
+                                <TableCell>League Wins</TableCell>
+                                <TableCell>League Losses</TableCell>
+                                <TableCell>Scrimmage Wins</TableCell>
+                                <TableCell>Scrimmage Losses</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -54,10 +55,16 @@ class AdminView extends Component {
                                             {row.firstName} {row.lastName}
                                         </TableCell>
                                         <TableCell>                                               
-                                            {row.wins} 
+                                            {row.leagueStats.wins} 
                                         </TableCell>
                                         <TableCell>
-                                            {row.losses}    
+                                            {row.leagueStats.losses}    
+                                        </TableCell>
+                                        <TableCell>                                               
+                                            {row.scrimStats.wins} 
+                                        </TableCell>
+                                        <TableCell>
+                                            {row.scrimStats.losses}    
                                         </TableCell>
                                     </TableRow>
                                 )

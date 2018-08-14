@@ -25,10 +25,10 @@ class Home extends Component {
   }
 
   sortByWinPercentage = (a,b) => {
-      if(a.wins/a.losses === b.wins/b.losses) {
+      if(a.leagueStats.wins/a.leagueStats.losses === b.leagueStats.wins/b.leagueStats.losses) {
           return (a.id - b.id)
       }
-      return (b.wins/b.losses) - (a.wins/a.losses) 
+      return (b.leagueStats.wins/b.leagueStats.losses) - (a.leagueStats.wins/a.leagueStats.losses) 
   }
 
   render() {
@@ -44,23 +44,31 @@ class Home extends Component {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Name</TableCell>
-                                    <TableCell>Wins</TableCell>
-                                    <TableCell>Losses</TableCell>
+                                    <TableCell>League Wins</TableCell>
+                                    <TableCell>League Losses</TableCell>
+                                    <TableCell>Scrimmage Wins</TableCell>
+                                    <TableCell>Scrimmage Losses</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {this.state.playerData.sort(this.sortByWinPercentage).map((row,index) => {
                                     return (
                                         <TableRow key={index}>
-                                            <TableCell>
-                                                {row.firstName} {row.lastName}
-                                            </TableCell>
-                                            <TableCell>
-                                                {row.wins}
-                                            </TableCell>
-                                            <TableCell>
-                                                {row.losses}
-                                            </TableCell>
+                                              <TableCell>
+                                            {row.firstName} {row.lastName}
+                                        </TableCell>
+                                        <TableCell>                                               
+                                            {row.leagueStats.wins} 
+                                        </TableCell>
+                                        <TableCell>
+                                            {row.leagueStats.losses}    
+                                        </TableCell>
+                                        <TableCell>                                               
+                                            {row.scrimStats.wins} 
+                                        </TableCell>
+                                        <TableCell>
+                                            {row.scrimStats.losses}    
+                                        </TableCell>
                                         </TableRow>
                                     )
                                 })}

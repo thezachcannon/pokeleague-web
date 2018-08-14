@@ -24,13 +24,13 @@ class EditUserView extends Component {
         })
     }
 
-    increment = field =>{
-        db.ref().child('/players').child(this.state.userId).update({[field]: (this.state.player[field] + 1)})
+    increment = (field, prop) =>{
+        db.ref().child('/players').child(this.state.userId).child(prop).update({[field]: (this.state.player[prop][field] + 1)})
     }
 
-    decrement = field => {
-        if(this.state.player[field] > 0) {
-        db.ref().child('/players').child(this.state.userId).update({[field]: (this.state.player[field] - 1)})
+    decrement = (field, prop) => {
+        if(this.state.player[prop][field] > 0) {
+        db.ref().child('/players').child(this.state.userId).child(prop).update({[field]: (this.state.player[prop][field] - 1)})
     }}
 
     
@@ -46,26 +46,60 @@ class EditUserView extends Component {
                                 {this.state.player.firstName} {this.state.player.lastName}
                             </Typography>
                         </CardContent>
+                        <Grid container>
+                        <Grid item>
+                                <Typography>League Stats</Typography>
+                            </Grid>
+                        </Grid>
                         <Grid container alignContent='space-between'>
                             <Grid item>
                                 <Card>
                                     <CardContent>
-                                        <Typography>Wins: {this.state.player.wins}</Typography>
+                                        <Typography>Wins: {this.state.player.leagueStats.wins}</Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button onClick={()=> this.decrement('wins')} color='secondary'><RemoveIcon/></Button>
-                                        <Button onClick={() => this.increment('wins')}color='primary'><AddIcon/></Button>
+                                        <Button onClick={()=> this.decrement('wins', 'leagueStats')} color='secondary'><RemoveIcon/></Button>
+                                        <Button onClick={() => this.increment('wins', 'leagueStats')}color='primary'><AddIcon/></Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
                             <Grid item>
                             <Card>
                                 <CardContent>
-                                    <Typography>Losses: {this.state.player.losses}</Typography>
+                                    <Typography>Losses: {this.state.player.leagueStats.losses}</Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button color='secondary' onClick={() => this.decrement('losses')}><RemoveIcon/></Button>
-                                    <Button color='primary' onClick={()=> this.increment('losses')}><AddIcon/></Button>
+                                    <Button color='secondary' onClick={() => this.decrement('losses', 'leagueStats')}><RemoveIcon/></Button>
+                                    <Button color='primary' onClick={()=> this.increment('losses', 'leagueStats')}><AddIcon/></Button>
+                                </CardActions>
+                            </Card>
+                            </Grid>
+                        </Grid>
+                        <Grid container>
+                        <Grid item>
+                                <Typography>Scrimmage Stats</Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid container alignContent='space-between'>
+                            <Grid item>
+                                <Card>
+                                    <CardContent>
+                                        <Typography>Wins: {this.state.player.scrimStats.wins}</Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button onClick={()=> this.decrement('wins','scrimStats')} color='secondary'><RemoveIcon/></Button>
+                                        <Button onClick={() => this.increment('wins', 'scrimStats')}color='primary'><AddIcon/></Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                            <Grid item>
+                            <Card>
+                                <CardContent>
+                                    <Typography>Losses: {this.state.player.scrimStats.losses}</Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button color='secondary' onClick={() => this.decrement('losses', 'scrimStats')}><RemoveIcon/></Button>
+                                    <Button color='primary' onClick={()=> this.increment('losses', 'scrimStats')}><AddIcon/></Button>
                                 </CardActions>
                             </Card>
                             </Grid>
