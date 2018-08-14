@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
 import './App.css';
-import {Route, Switch, withRouter} from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 import Home from './views/Home'
 import LoginView from './views/LoginView'
 import AdminView from './views/Admin/Admin'
+import SearchCards from './views/Cards/SearchCards';
 import EditUserView from './views/Admin/EditUserView'
 import { auth } from './firebase/firebase';
 
@@ -36,13 +37,13 @@ const INITIAL_STATE = {
   isLoggedIn: false,
 }
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super()
     this.state = INITIAL_STATE;
-      }
-  
-  logoutClick = () =>{
-      auth.signOut()
+  }
+
+  logoutClick = () => {
+    auth.signOut()
   }
 
   adminClick = () => {
@@ -59,29 +60,29 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-          <div className="App">
+        <div className="App">
           <AuthUserContext>
-            { authUser => { return <div>
-            <MenuAppBar adminClick={this.adminClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              { !authUser &&  <div><Route path="/login" authUser exact component={LoginView} />
-                             </div>
-              }
-             { authUser && 
-              <div>
-                <Route path='/admin' exact component={AdminView} />
-                <Route path='/admin/editUser/:userId' component={EditUserView} />
-              </div>}
-             </Switch>
+            {authUser => {
+              return <div>
+                <MenuAppBar adminClick={this.adminClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
+                <Switch>
+                  <Route path="/" exact component={Home} />
+                  <Route path="/cards" exact component={SearchCards} />
+                  {!authUser && <div><Route path="/login" authUser exact component={LoginView} />
+                  </div>
+                  }
+                  {authUser &&
+                    <div>
+                      <Route path='/admin' exact component={AdminView} />
+                      <Route path='/admin' exact component={AdminView} />
+                      <Route path='/admin/editUser/:userId' component={EditUserView} />
+                    </div>}
+                </Switch>
               </div>
             }}
-            
-            
-             
           </AuthUserContext>
-          </div>
-          </MuiThemeProvider>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
