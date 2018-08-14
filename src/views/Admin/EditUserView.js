@@ -3,9 +3,8 @@ import {withRouter} from 'react-router-dom'
 import withAuthentication from '../../components/Session/withAuthentication'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
-import EditIcon from '@material-ui/icons/Edit'
 import {db} from '../../firebase/firebase'
-import { Grid, Card, CardMedia, Paper, TableBody,CardContent, Typography, CardActions, Button, Table, TableHead, TableRow, TableCell, CardHeader } from "@material-ui/core";
+import { Grid, Card, CardContent, Typography, CardActions, Button,} from "@material-ui/core";
 const INITIAL_STATE = {
     player: {}
 }
