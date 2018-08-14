@@ -59,7 +59,6 @@ export default class SearchCards extends React.Component {
 
     render() {
         return (
-            <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
                 <Grid container alignContent="center" justify="center" alignItems="center">
                     <div style={{ textAlign: 'center', width: '100%' }}>Deck List</div>
                     <div style={{ textAlign: 'center', width: '100%', marginBottom: '20px' }}>{this.state.deck.length} / 60</div>
@@ -103,7 +102,6 @@ export default class SearchCards extends React.Component {
                         })}
                     </div>
                 </Grid>
-            </div>
         )
     }
 }

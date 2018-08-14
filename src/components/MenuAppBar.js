@@ -49,7 +49,7 @@ class MenuAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar>
+        <AppBar position='absolute' style={{position: 'relative',}}>
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <a href='/' style={{'color': "white", 'textDecoration': "none"}}><MenuIcon /></a>

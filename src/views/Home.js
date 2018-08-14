@@ -34,10 +34,8 @@ class Home extends Component {
   render() {
     return (
             <div>
-                {!this.state.loading &&
-                <div style={{"height": "100vh", "display": "flex"}}>
-                    
-        <Grid container alignContent="center" justify="center" alignItems="center">
+                {!this.state.loading &&                    
+                <Grid style={{'width': '100vw', overflow: 'auto'}} container alignContent="center" justify="center" alignItems="center">
                     <Grid item>
                        <Paper>
                         <Table>
@@ -77,7 +75,6 @@ class Home extends Component {
                         </Paper>
                     </Grid>
                     </Grid>
-                </div>
                 }
             </div>
     );

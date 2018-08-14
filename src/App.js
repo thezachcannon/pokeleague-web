@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom'
+import {Grid} from '@material-ui/core'
 
 import Home from './views/Home'
 import LoginView from './views/LoginView'
@@ -31,6 +32,10 @@ const theme = createMuiTheme({
     },
   }
 });
+
+const styles = theme => ({
+  }
+)
 
 const INITIAL_STATE = {
   currentUser: null,
@@ -64,24 +69,29 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="App">
+        <div className={"App"}>
           <AuthUserContext>
             {authUser => {
-              return <div>
+              return <div style={{height:"100vh"}}>
                 <MenuAppBar cardsClick={this.cardsClick} adminClick={this.adminClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
-                <Switch>
-                  <Route path="/" exact component={Home} />
-                  <Route path="/cards" exact component={SearchCards} />
-                  {!authUser && <div><Route path="/login" authUser exact component={LoginView} />
-                  </div>
-                  }
-                  {authUser &&
-                    <div>
-                      <Route path='/admin' exact component={AdminView} />
-                      <Route path='/admin' exact component={AdminView} />
-                      <Route path='/admin/editUser/:userId' component={EditUserView} />
-                    </div>}
-                </Switch>
+                <div style={{height:'calc(100% - 64px)'}}>
+                <Grid style={{height: '100%', overflow: 'auto', width: '100%'}} container alignItems='center' alignContent='center'>
+                  <Grid item>
+                  <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/cards" exact component={SearchCards} />
+                    {!authUser && <div><Route path="/login" authUser exact component={LoginView} />
+                    </div>
+                    }
+                    {authUser &&
+                      <div>
+                        <Route path='/admin' exact component={AdminView} />
+                        <Route path='/admin/editUser/:userId' component={EditUserView} />
+                      </div>}
+                  </Switch>
+                  </Grid>
+                </Grid>
+                </div> 
               </div>
             }}
           </AuthUserContext>
@@ -91,4 +101,4 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(withRouter(App));
+export default withStyles(styles) (withAuthentication(withRouter(App)));
