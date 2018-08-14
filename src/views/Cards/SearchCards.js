@@ -51,11 +51,8 @@ export default class SearchCards extends React.Component {
             deck.push(card);
             this.setState({ deck: deck });
         } else {
-            deck.splice(deck.findIndex(it => {
-                if (it === card) {
-                    return it
-                }
-            }), 1)
+            var index = deck.findIndex(it => it === card ? it : null)
+            deck.splice(index, 1)
             this.setState({ deck: deck })
         }
     }
