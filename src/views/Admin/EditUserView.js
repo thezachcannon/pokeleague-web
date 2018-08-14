@@ -37,7 +37,6 @@ class EditUserView extends Component {
 
     render() {
         return (
-            <div style={{height: '100vh', display: 'flex'}}>
                 <Grid container alignContent="center" justify="center" alignItems="center" >
                     <Grid item>
                     <Card>
@@ -127,7 +126,6 @@ class EditUserView extends Component {
                     
                     </Grid>
                 </Grid>
-            </div>
         );
     }
 

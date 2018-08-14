@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Grid, FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import { Grid, FormControl, FormGroup, TextField, Button, Paper } from '@material-ui/core';
 import {auth} from '../firebase/firebase'
 import {withRouter} from 'react-router-dom'
 
@@ -30,10 +30,11 @@ class LoginView extends Component {
     }
     render() {
         return (
-            <div style={{height: "100vh", display: "flex"}}>
-            <Grid container alignContent="center" justify="center" alignItems="center">
+            <div>
+                <Grid style={{width: '100vw'}}container alignContent="center" justify="center" alignItems="center">
                 <Grid item>
-                        <FormControl>
+                    <Paper style={{padding: '10px'}}>
+                    <FormControl>
                             <FormGroup>
                                 <TextField label="Username" id='username' onChange={event => this.setState(updateByPropertyName('username', event.target.value))}>
 
@@ -48,6 +49,7 @@ class LoginView extends Component {
                             </FormGroup>
                         </FormControl>
                         {this.state.error && <p>{this.state.error.message}</p>}
+                    </Paper>
                 </Grid>
             </Grid>
             </div>
