@@ -57,6 +57,10 @@ class App extends Component {
     this.props.history.push('/')
   }
 
+  cardsClick = props => {
+    this.props.history.push('/cards')
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -64,7 +68,7 @@ class App extends Component {
           <AuthUserContext>
             {authUser => {
               return <div>
-                <MenuAppBar adminClick={this.adminClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
+                <MenuAppBar cardsClick={this.cardsClick} adminClick={this.adminClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
                 <Switch>
                   <Route path="/" exact component={Home} />
                   <Route path="/cards" exact component={SearchCards} />

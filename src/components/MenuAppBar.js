@@ -40,6 +40,7 @@ class MenuAppBar extends React.Component {
   handleAdmin = () => this.props.adminClick();
 
   handleLogout = () => this.props.logoutClick();
+  handleCardsClick = () => this.props.cardsClick()
 
   render() {
     const { classes, authUser } = this.props;
@@ -80,6 +81,7 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
+                  <MenuItem onClick={this.handleCardsClick}>Cards</MenuItem>
                   <MenuItem onClick={this.handleAdmin}>Admin</MenuItem>               
                   <MenuItem onClick={this.handleLogout}>Logout</MenuItem>                  
                 </Menu>
