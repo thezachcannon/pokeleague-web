@@ -1,0 +1,1 @@
+[![CircleCI](https://circleci.com/gh/thezachcannon/pokeleague-web/tree/master.svg?style=svg)](https://circleci.com/gh/thezachcannon/pokeleague-web/tree/master)

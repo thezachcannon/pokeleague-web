@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button} from '@material-ui/core'
+import {Grid, Paper, Table, TableHead, TableRow, TableCell, TableBody} from '@material-ui/core'
 import {withRouter} from 'react-router-dom'
 import withAuthentication from '../../components/Session/withAuthentication';
 import {db} from '../../firebase/firebase'
