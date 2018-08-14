@@ -5,8 +5,8 @@ import {Route, Switch, withRouter} from 'react-router-dom'
 
 import Home from './views/Home'
 import LoginView from './views/LoginView'
-import AdminView from './views/Admin'
-import EditUserView from './views/EditUserView'
+import AdminView from './views/Admin/Admin'
+import EditUserView from './views/Admin/EditUserView'
 import { auth } from './firebase/firebase';
 
 import AuthUserContext from './components/Session/AuthUserContext';

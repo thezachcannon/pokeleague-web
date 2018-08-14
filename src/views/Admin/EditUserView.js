@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import {withRouter} from 'react-router-dom'
-import withAuthentication from '../components/Session/withAuthentication'
+import withAuthentication from '../../components/Session/withAuthentication'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
-import {db} from '../firebase/firebase'
-import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button } from "@material-ui/core";
+import EditIcon from '@material-ui/icons/Edit'
+import {db} from '../../firebase/firebase'
+import { Grid, Card, CardMedia, Paper, TableBody,CardContent, Typography, CardActions, Button, Table, TableHead, TableRow, TableCell, CardHeader } from "@material-ui/core";
 const INITIAL_STATE = {
     player: {}
 }
@@ -29,8 +30,9 @@ class EditUserView extends Component {
     }
 
     decrement = field => {
+        if(this.state.player[field] > 0) {
         db.ref().child('/players').child(this.state.userId).update({[field]: (this.state.player[field] - 1)})
-    }
+    }}
 
     
 
@@ -45,7 +47,7 @@ class EditUserView extends Component {
                                 {this.state.player.firstName} {this.state.player.lastName}
                             </Typography>
                         </CardContent>
-                        <Grid container>
+                        <Grid container alignContent='space-between'>
                             <Grid item>
                                 <Card>
                                     <CardContent>
@@ -70,6 +72,26 @@ class EditUserView extends Component {
                             </Grid>
                         </Grid>
                     </Card>
+                    <br/>
+                    {/* <Grid item>
+                        <Card>
+                            <CardContent>
+                                Sun Steel
+                            </CardContent>
+                            <CardActions>
+                                <Button>
+                                    <EditIcon></EditIcon>
+                                </Button>
+                                <Button>
+                                    <RemoveIcon></RemoveIcon>
+                                </Button>
+                            </CardActions>
+                        </Card>
+                        <Button color='primary' variant='contained'>
+                            Create Deck
+                        </Button>
+                    </Grid> */}
+                    
                     </Grid>
                 </Grid>
             </div>

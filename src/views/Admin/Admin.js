@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Grid, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button} from '@material-ui/core'
 import {withRouter} from 'react-router-dom'
-import withAuthentication from '../components/Session/withAuthentication';
-import {db} from '../firebase/firebase'
+import withAuthentication from '../../components/Session/withAuthentication';
+import {db} from '../../firebase/firebase'
 const INITIAL_STATE = {
     lodaing: true,
     playerAccounts: []
