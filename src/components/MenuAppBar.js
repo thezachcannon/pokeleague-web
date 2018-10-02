@@ -51,8 +51,8 @@ class MenuAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position='absolute' style={{position: 'relative',}}>
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <a href='/' style={{'color': "white", 'textDecoration': "none"}}><MenuIcon /></a>
+            <IconButton onClick={this.props.menuClick} className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
             </IconButton>
             <Typography onClick={this.props.titleClick} variant="title" color="inherit" className={classes.flex}>
               PokeLeague
@@ -90,7 +90,6 @@ class MenuAppBar extends React.Component {
             {!authUser && (
                 <div>
                     <IconButton color="inherit" onClick={this.props.loginClick}>
-                    
                     <Lock/>
                     </IconButton>
                 
