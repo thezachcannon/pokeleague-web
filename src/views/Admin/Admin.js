@@ -32,9 +32,7 @@ class AdminView extends Component {
         return (
             <div>
             {!this.state.loading &&
-                
-    <Grid container alignContent="center" justify="center" alignItems="center">
-                <Grid item>
+                <div style={{overflow: 'auto'}}>
                    <Paper>
                     <Table>
                         <TableHead>
@@ -71,8 +69,7 @@ class AdminView extends Component {
                         </TableBody>
                     </Table>
                     </Paper>
-                </Grid>
-                </Grid>
+                    </div>
             }
         </div>
         )
