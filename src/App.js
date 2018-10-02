@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom'
-import {Grid, MenuList, MenuItem, Paper} from '@material-ui/core'
+import { MenuList, MenuItem, Paper} from '@material-ui/core'
 
 import Home from './views/Home'
 import LoginView from './views/LoginView'
