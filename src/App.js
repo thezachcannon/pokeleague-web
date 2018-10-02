@@ -71,6 +71,9 @@ class App extends Component {
   menuClick = () => {
     this.setState({sideOpen: !this.state.sideOpen})
   }
+  routeMe (route) {
+    this.props.history.push(route)
+  }
 
   render() {
     return (
@@ -82,10 +85,10 @@ class App extends Component {
                 <MenuAppBar cardsClick={this.cardsClick} adminClick={this.adminClick} menuClick={this.menuClick} authUser={authUser} titleClick={this.titleClick} logoutClick={this.logoutClick} loginClick={this.loginClick}></MenuAppBar>
                 <div style={{height:'calc(100% - 64px)', width: '100%',  display: 'flex', flexDirection: 'row'}}>
                 {this.state.sideOpen && 
-                  <Paper style={{width: '250px', zIndex:'100', position: 'absolute', height: '100%', backgroundColor: '#d50000', opacity: '.85'}}>
+                  <Paper onMouseLeave={this.menuClick} style={{width: '250px', zIndex:'100', position: 'absolute', height: '100%', backgroundColor: '#d50000', opacity: '.85'}}>
                     <MenuList>
-                      <MenuItem><a href='/'>Home</a></MenuItem>
-                      <MenuItem><a href='/cards'>Cards</a></MenuItem>
+                      <MenuItem onClick={() => this.routeMe('/')}><a  style={{color: 'white', textDecoration: 'none', cursor: 'pointer'}}>Home</a></MenuItem>
+                      <MenuItem onClick={() => this.routeMe('/cards')}><a style={{color: 'white', textDecoration: 'none', cursor: 'pointer'}}>Cards</a></MenuItem>
                     </MenuList>
                   </Paper>
                 }
